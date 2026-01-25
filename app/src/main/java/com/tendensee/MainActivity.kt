@@ -15,6 +15,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.tendensee.ui.home.HomeScreen
 import com.tendensee.ui.navigation.Screen
+import com.tendensee.ui.stats.StatsScreen
 import com.tendensee.viewmodel.HabitViewModel
 import com.tendensee.ui.theme.TendenSeeTheme
 import com.tendensee.ui.SplashScreen
@@ -67,6 +68,9 @@ class MainActivity : ComponentActivity() {
                             ) { backStackEntry ->
                                 val habitId = backStackEntry.arguments?.getInt("habitId") ?: return@composable
                                 com.tendensee.ui.habit.HabitDetailScreen(navController = navController, viewModel = viewModel, habitId = habitId)
+                            }
+                            composable(Screen.Stats.route) {
+                                StatsScreen(viewModel = viewModel)
                             }
                         }
                     }

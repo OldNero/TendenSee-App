@@ -6,4 +6,5 @@ sealed class Screen(val route: String) {
     object HabitDetail : Screen("habit_detail/{habitId}") {
         fun createRoute(habitId: Int) = "habit_detail/$habitId"
     }
+    object Stats : Screen("stats")
 }

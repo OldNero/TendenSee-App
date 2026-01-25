@@ -34,6 +34,7 @@ class HabitViewModel(application: Application) : AndroidViewModel(application) {
     fun addHabit(
         title: String,
         description: String = "",
+        color: Int = 0xFF4CAF50.toInt(),
         schedulingType: SchedulingType = SchedulingType.DAILY,
         frequency: Int = 1,
         daysOfWeek: String = "",
@@ -44,6 +45,7 @@ class HabitViewModel(application: Application) : AndroidViewModel(application) {
             repository.addHabit(
                 title, 
                 description,
+                color,
                 schedulingType,
                 frequency,
                 daysOfWeek,

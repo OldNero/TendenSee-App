@@ -14,10 +14,14 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.tendensee.data.Habit
 import com.tendensee.ui.components.ExtendedHeatmap
+import com.tendensee.ui.components.ShadcnCard
 import com.tendensee.ui.components.StatCard
 import com.tendensee.utils.StatsCalculator
 import com.tendensee.viewmodel.HabitViewModel
 import kotlinx.coroutines.launch
+
+// Add the following dependency to your build.gradle file:
+// implementation "androidx.compose.material3:material3:1.0.0"
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

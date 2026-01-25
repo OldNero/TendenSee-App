@@ -15,11 +15,13 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Check
+import androidx.compose.material.icons.filled.Analytics
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.CheckboxDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -48,6 +50,7 @@ import com.tendensee.data.HabitRecord
 import androidx.compose.ui.Alignment
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.material.icons.outlined.Analytics
 import androidx.compose.ui.draw.clip
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -59,14 +62,8 @@ fun HomeScreen(
     val habits by viewModel.allHabits.collectAsState()
     val today = LocalDate.now()
     
-    // For simplicity, we'll fetch all records for the last 30 days once and group them
-    // In a production app, we'd use a more specialized query or state management
     val startOfLookback = today.minusDays(30)
     val recordsFlow = remember(today) { 
-        // We'll approximate by fetching a wide range. 
-        // To be strict, we need a DAO method for range of all habits.
-        // For now, we reuse getRecordsForDate logic or similar.
-        // Actually, let's just use a flow that fetches recent records.
         viewModel.getRecentRecords(30)
     }
     val allRecentRecords by recordsFlow.collectAsState(initial = emptyList())
@@ -77,6 +74,18 @@ fun HomeScreen(
     }.map { it.habitId }.toSet()
 
     Scaffold(
+        topBar = {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp),
+                horizontalArrangement = Arrangement.End
+            ) {
+                IconButton(onClick = { navController.navigate(Screen.Stats.route) }) {
+                    Icon(Icons.Outlined.Analytics, contentDescription = "Stats")
+                }
+            }
+        },
         floatingActionButton = {
             FloatingActionButton(
                 onClick = { navController.navigate(Screen.AddHabit.route) },

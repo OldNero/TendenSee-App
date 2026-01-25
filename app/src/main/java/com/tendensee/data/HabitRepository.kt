@@ -10,21 +10,26 @@ class HabitRepository(private val habitDao: HabitDao) {
     suspend fun addHabit(
         title: String,
         description: String = "",
+        color: Int = 0xFF4CAF50.toInt(),
         schedulingType: SchedulingType = SchedulingType.DAILY,
         frequency: Int = 1,
         daysOfWeek: String = "",
         goalType: GoalType = GoalType.AT_LEAST,
         goalTarget: Float = 1.0f
     ) {
+        val currentTime = System.currentTimeMillis()
         habitDao.insertHabit(
             Habit(
                 title = title,
                 description = description,
+                color = color,
                 schedulingType = schedulingType,
                 frequency = frequency,
                 daysOfWeek = daysOfWeek,
                 goalType = goalType,
-                goalTarget = goalTarget
+                goalTarget = goalTarget,
+                createdAt = currentTime,
+                lastModified = currentTime
             )
         )
     }

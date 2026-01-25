@@ -59,7 +59,9 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
-    
+    implementation("androidx.compose.material:material-icons-extended:1.6.2")
+    implementation("androidx.compose.material3:material3-window-size-class")
+
     // Navigation
     implementation(libs.androidx.navigation.compose)
 
@@ -67,6 +69,14 @@ dependencies {
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
     ksp(libs.androidx.room.compiler)
+
+    // MPAndroidChart
+    implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
+
+    // Emoji Picker
+    implementation("com.vanniktech:emoji-compose:0.17.0")
+    implementation("com.vanniktech:emoji-material:0.17.0")
+    implementation("com.vanniktech:emoji-google:0.17.0")
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

@@ -24,11 +24,13 @@ private val LightColorScheme = lightColorScheme(
     onBackground = LightForeground,
     surface = LightCard,
     onSurface = LightCardForeground,
-    surfaceVariant = LightMuted, // Using muted for variants
+    surfaceVariant = LightMuted, 
     onSurfaceVariant = LightMutedForeground,
     outline = LightBorder,
     error = LightDestructive,
-    onError = LightDestructiveForeground
+    onError = LightDestructiveForeground,
+    // Shadcn specific
+    scrim = LightAccent
 )
 
 private val DarkColorScheme = darkColorScheme(
@@ -44,7 +46,9 @@ private val DarkColorScheme = darkColorScheme(
     onSurfaceVariant = DarkMutedForeground,
     outline = DarkBorder,
     error = DarkDestructive,
-    onError = DarkDestructiveForeground
+    onError = DarkDestructiveForeground,
+    // Shadcn specific
+    scrim = DarkAccent
 )
 
 @Composable

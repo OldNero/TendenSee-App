@@ -17,10 +17,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.tendensee.ui.theme.TendenSeeTheme
 
 enum class ButtonVariant {
@@ -39,8 +42,13 @@ fun ShadcnButton(
     text: String,
     variant: ButtonVariant = ButtonVariant.Primary,
     enabled: Boolean = true,
-    shape: Shape = RoundedCornerShape(6.dp) // Shadcn typically has small radii
+    shape: Shape = RoundedCornerShape(6.dp), // Shadcn typically has small radii
+    textStyle: TextStyle = MaterialTheme.typography.titleSmall,
+    contentPadding: PaddingValues = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
+    softWrap: Boolean = true
 ) {
+    val baseTextStyle = textStyle.copy(fontWeight = FontWeight.Medium)
+
     when (variant) {
         ButtonVariant.Primary -> {
             Button(
@@ -52,9 +60,9 @@ fun ShadcnButton(
                     containerColor = MaterialTheme.colorScheme.primary,
                     contentColor = MaterialTheme.colorScheme.onPrimary
                 ),
-                contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp)
+                contentPadding = contentPadding
             ) {
-                Text(text = text, style = MaterialTheme.typography.titleSmall.copy(fontWeight = FontWeight.Medium))
+                Text(text = text, style = baseTextStyle, softWrap = softWrap)
             }
         }
         ButtonVariant.Secondary -> {
@@ -67,9 +75,9 @@ fun ShadcnButton(
                     containerColor = MaterialTheme.colorScheme.secondary,
                     contentColor = MaterialTheme.colorScheme.onSecondary
                 ),
-                contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp)
+                contentPadding = contentPadding
             ) {
-                Text(text = text, style = MaterialTheme.typography.titleSmall.copy(fontWeight = FontWeight.Medium))
+                Text(text = text, style = baseTextStyle, softWrap = softWrap)
             }
         }
         ButtonVariant.Destructive -> {
@@ -82,9 +90,9 @@ fun ShadcnButton(
                     containerColor = MaterialTheme.colorScheme.error,
                     contentColor = MaterialTheme.colorScheme.onError
                 ),
-                contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp)
+                contentPadding = contentPadding
             ) {
-                Text(text = text, style = MaterialTheme.typography.titleSmall.copy(fontWeight = FontWeight.Medium))
+                Text(text = text, style = baseTextStyle, softWrap = softWrap)
             }
         }
         ButtonVariant.Outline -> {
@@ -97,9 +105,9 @@ fun ShadcnButton(
                     contentColor = MaterialTheme.colorScheme.onBackground
                 ),
                 border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline),
-                contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp)
+                contentPadding = contentPadding
             ) {
-                Text(text = text, style = MaterialTheme.typography.titleSmall.copy(fontWeight = FontWeight.Medium))
+                Text(text = text, style = baseTextStyle, softWrap = softWrap)
             }
         }
         ButtonVariant.Ghost -> {
@@ -111,9 +119,9 @@ fun ShadcnButton(
                 colors = ButtonDefaults.textButtonColors(
                     contentColor = MaterialTheme.colorScheme.onBackground
                 ),
-                contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp)
+                contentPadding = contentPadding
             ) {
-                Text(text = text, style = MaterialTheme.typography.titleSmall.copy(fontWeight = FontWeight.Medium))
+                Text(text = text, style = baseTextStyle, softWrap = softWrap)
             }
         }
         ButtonVariant.Link -> {
@@ -125,14 +133,14 @@ fun ShadcnButton(
                 colors = ButtonDefaults.textButtonColors(
                     contentColor = MaterialTheme.colorScheme.primary
                 ),
-                contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp)
+                contentPadding = contentPadding
             ) {
                 Text(
                     text = text, 
-                    style = MaterialTheme.typography.titleSmall.copy(
-                        fontWeight = FontWeight.Medium, 
+                    style = baseTextStyle.copy(
                         textDecoration = TextDecoration.Underline
-                    )
+                    ),
+                    softWrap = softWrap
                 )
             }
         }
